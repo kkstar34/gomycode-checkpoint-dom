@@ -5,8 +5,8 @@
     
     </head>
 
-
-    <body onload="loadBody()">
+    <!-- onload="loadBody()" -->
+    <body >
 
         <div class="container flex">
             <div class="structure">
@@ -24,7 +24,18 @@
                   </tr>
                 </thead>
                 <tbody id="all_products">
-              
+                  <tr> 
+                    <td class="article--name"><div style="margin-right:1rem"><img src=""></div> <div><h3>Sac de riz<h3/> <a class="remove" id="1">Supprimer</a></div></td>
+                  
+                      
+                      <td class="quantity"> 
+                        <button class="qty-minus" id="1">-</button>
+                        <input type="text" readonly placeholder="Unit price"  class="qty" value="1" >
+                        <button class="qty-plus" id="1">+</button>
+                      </td>
+                      <td> 15000 fr</td> 
+                      <td class="subtotal">15000 fr</td>
+                    </tr>
                  
                 </tbody>
                 <tfoot>
@@ -42,7 +53,7 @@
           </div>
           
           
-          <script src="js/script.js">
+          <script src="js/index.js">
     
           </script>
         

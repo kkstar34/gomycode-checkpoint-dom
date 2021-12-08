@@ -5,7 +5,19 @@ var articles = [
 		name : "DIP n DIP",
 		price : 150,
 		quantity : 1
-	}
+	},
+
+	{
+		id : 2,
+		image : "https://picsum.photos/id/237/100/100",
+		name : "Sac",
+		price : 2000,
+		quantity : 3
+	},
+
+	
+
+	
 ];
 
 function loadBody(){
@@ -28,7 +40,7 @@ function displayAllProducts(){
 			<td class="quantity"> <button class="qty-minus" id=${article.id}>-</button><input type="text" readonly placeholder="Unit price"  class="qty" value=${article.quantity} ><button class="qty-plus" id=${article.id}>+</button></td>
 			<td> ${article.price}</td> 
 			<td class="subtotal">${article.price * article.quantity} </td>
-		</tr>`).join(" ")}`;
+		</tr>`).join("")}`;
 		loadNewElement();
 
 		
@@ -42,7 +54,38 @@ function loadNewElement(){
 	// document.querySelectorAll(".quantity").forEach(qty => qty.addEventListener("change", changeSubtotal));
 	document.querySelectorAll(".qty-plus").forEach(qty => qty.addEventListener("click", increaseQuantity));
 	document.querySelectorAll(".qty-minus").forEach(qty => qty.addEventListener("click", decreaseQuantity));
+	
+
+
 }
+
+function increaseQty(){
+	this.previousElementSibling.value++;
+	let qty = parseInt(this.previousElementSibling.value);
+	let price = parseFloat(this.parentElement.nextElementSibling.innerText);
+	sousTotal(this, qty, price)
+
+}
+
+
+function decreaseQty(){
+	
+
+	if(parseInt(this.nextElementSibling.value) > 0){
+		this.nextElementSibling.value--;
+		let qty = parseInt(this.nextElementSibling.value);
+		let price = parseFloat(this.parentElement.nextElementSibling.innerText);
+	sousTotal(this, qty, price)
+	}
+}
+
+function sousTotal(btn, qty, price){
+
+	btn.parentElement.nextElementSibling.nextElementSibling.innerHTML = qty * price;
+
+}
+
+
 
 
 function add( name, price, quantity) {
@@ -90,8 +133,8 @@ function decreaseQuantity(element) {
 	const	index = articles.findIndex(article => parseInt(this.id) === article.id);
 	if(articles[index].quantity > 0){
 	articles[index].quantity -= 1;
-	let quantity = articles[index].quantity;
-	let subtotal = articles[index].price * quantity;
+	/* let quantity = articles[index].quantity;
+	let subtotal = articles[index].price * quantity; */
 
 	displayAllProducts()
 	loadNewElement()
@@ -105,12 +148,8 @@ function increaseQuantity(element) {
 	const	index = articles.findIndex(article => parseInt(this.id) === article.id);
 	if(articles[index].quantity <=1000){
 		articles[index].quantity += 1;
-		let quantity = articles[index].quantity;
-		let subtotal = articles[index].price * quantity;
-		
-	
-	   
-	  
+		/* let quantity = articles[index].quantity;
+		let subtotal = articles[index].price * quantity; */
 	   displayAllProducts()
 	   total();
 	}
@@ -143,6 +182,19 @@ function total(){
 	if(arr.length === 0){
 		totalDisplay.innerHTML =  "0 fr cfa";
 	}
+
+
+/* function total(){
+	var totalDisplay = document.getElementById("total_display");
+	var sum = 0;
+	var tbody = document.getElementById("all_products");
+	for (var i = 0; i < tbody.rows.length; i++) {
+		sum = sum + parseFloat(tbody.rows[i].cells[3].innerHTML);
+	}
+	var total = sum.toFixed(2);
+	totalDisplay.innerHTML = total + " euros";
+} */
+
 	
 
 	
